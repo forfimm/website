@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>For Fimm</title>
+{# technically we can load modules as direct www links using the content distribution service (CDN), but for the sake
+of portability I included them as static files. The app loads and renders in ca. 300ms, which is ok.
+#}
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles/style_new.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='libs/jquery-1.9.1.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/flask.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='libs/d3.min.js') }}"></script>
+</head>
+
+<body>
+<script type="text/javascript">
+        window.onload = chgAction(0, 7, 12, 'circle');{#draw the plate#}
+</script>
+
+<script type="text/javascript">
+
+        window.onload = chgAction(2, 2, 7, 'legend', "legend");{#draw the legend#}
+</script>
+
+
+<div class="wrapper">
+    <div class="grid-container">
+{#
+        Certain information should be stored on server.
+        Logic is:
+        data could vary from experiment to experiment and an external user should have access only to info that is relevant to him and to the experiment.
+        So having it client-side is unnecessary and/or potentially a data leak.
+        Below are two examples of AJAX to server requests for two use-case: for counts and types.
+#}
+        <div>
+             <select name="counts" id="raw_counts" method="GET" action="/">
+                {% for count in counts %}
+                    <option value= "{{counts}}" SELECTED>{{count}}</option>"
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <form id="form1" name="form1">
+                 <select name=types id="recipient" size="1" onChange="javascript:chgAction(1, 7, 12, 'circle')">
+                     {% for type in types %}
+                        <option value="{{ types.index(type) }}">Count of {{ type }}</option>
+                    {% endfor %}
+                 </select>
+            </form>
+        </div>
+        <div>
+            <button id="csv_exporter" onclick="exportTableToCSV('members.csv')">Export values to csv</button>
+        </div>
+    </div>
+{#
+        Other info could be right in the page (html or js). As it is always there and is not too sensitive.
+        Now choosing different kinds of drugs as a demonstration for that might be not the best option, since clearly they will change from experiment to experiment.
+        But for the lack of better UI element it has been chosen like so.
+#}
+    <div class="grid-container1">
+        <div class="box_frame" id="drugs">Ruxolitinib</div>
+        <div class="box_frame" id="drugs">Sunitinib</div>
+        <div class="box_frame" id="drugs">Trametinib</div>
+        <div class="box_frame" id="drugs">Axitinib</div>
+        <div class="box_frame" id="drugs">Nilotinib</div>
+        <div class="box_frame" id="drugs">Nivolumab</div>
+        <div class="box_frame" id="drugs">Idarubicin</div>
+        <div class="box_frame" id="drugs">Everolimus</div>
+    </div>
+{#
+        Some functions should be executed as JS due to its ease and versatility. For instance:
+#}
+    <div class="grid-container2">
+        <div>
+            <div class = "parent_table">
+                <table id = "mytable">
+                    {#here a JS function inserts a table#}
+                </table>
+            </div>
+            <div class = "parent_table">
+                <table id = "legend">
+                    {#here JS function inserts a legend#}
+                </table>
+            </div>
+    </div>
+
+{#        # drawing dem trees#}
+    <div class = "d3" >
+{#cannot easily move the script away, coz exporting data from views.py#}
+    <script type="text/javascript">
+        var treeData = {
+                "name": "{{ types[0] }}",
+                "value": 0,
+            {#"name": "",#}
+                "children": [
+                    { "name": "{{ types[1] }}", "value": 1},
+                    { "name": "{{ types[2] }}", "value": 2},
+                    { "name": "{{ types[3] }}","value": 3},
+                    { "name": "{{ types[4] }}","value": 4},
+                    { "name": "{{ types[5] }}","value": 5},
+                    { "name": "{{ types[6] }}","value": 6},
+                    { "name": "{{ types[8] }}","value": 7}
+                ]
+        };
+        // set size
+        var margin = {top: 50, right: 90, bottom: 70, left: 70},
+            width = 720 - margin.left/2 - margin.right,
+            height = 420 - margin.top - margin.bottom;
+        // set layout
+        var treemap = d3.tree()
+            .size([width, height]);
+        //  assigns the data to a hierarchy using parent-child relationships
+        var nodes = d3.hierarchy(treeData);
+        // maps the node data to the tree layout
+        nodes = treemap(nodes);
+        // append the svg object to the body of the page
+        var svg = d3.select("body").selectAll('.d3').append("svg").attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom),
+        g = svg.append("g").attr("transform","translate(" + margin.left + "," + margin.top + ")");
+        // adds the links between the nodes
+        var link = g.selectAll(".link").data( nodes.descendants().slice(1))
+            .enter().append("path")
+            .attr("class", "link")
+            .attr("d", function(d) {
+                return "M" + d.x + "," + d.y
+                        + "C" + d.x + "," + (d.y + d.parent.y) / 2
+                        + " " + d.parent.x + "," +  (d.y + d.parent.y) / 2
+                        + " " + d.parent.x + "," + d.parent.y;
+            });
+        // adds each node as a group + add onclick option for switch of second dropdown upon selection
+        var node = g.selectAll(".node").data(nodes.descendants()).enter().append("g")
+            .on("click", click)
+            .attr("class", function(d) {
+            return "node" + (d.children ? " node--internal" : " node--leaf");
+        }).attr("transform", function(d) {
+            return "translate(" + d.x + "," + d.y + ")"; });
+        // adds the circle to the node
+        node.append("circle").attr("r", 20);
+        // adds the text to the node
+        node.append("text").attr("dy", "1.75em").attr("y", function(d) { return d.children ? -45 : 20; })
+            .style("text-anchor", "middle")
+            .text(function(d) { return d.data.name; });
+        function click() {
+{# This is a demonstration of JQuery. It is insanely flexible. If it was up to me, I would have used mostly its
+functions. But to be fair, there is some overhead.
+#}
+            d3.select(this).on("dblclick", function (d) {
+                if (d.data.value != $('#recipient').val()) {
+                    $('#recipient').val(d.data.value); //gets the value of the d3 node
+                    $('#recipient').triggerHandler("change");} // triggers update on the second dropdown, if the new option is different from the previous one.
+            })
+        }
+
+    </script>
+    </div>
+    </div>
+</div>
+</body>
+</html>

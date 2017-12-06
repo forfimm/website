@@ -1,0 +1,28 @@
+# Man for setting up the env
+* `source activate fimm`
+* `pip install flask`
+
+## man for running
+* `export FLASK_APP=flaskapp`
+* `export FLASK_DEBUG=true`
+* `pip install -e .` from library root, where setup.py is located
+* `flask run`
+
+
+### source for extensions
+1) https://www.fullstackpython.com/flask.html
+2) https://stackoverflow.com/questions/35840386/write-the-output-of-a-script-in-a-html-page-using-flask
+3) https://awesome-python.com/
+4) https://github.com/humiaozuzu/awesome-flask
+5) http://flask-table.readthedocs.io/en/stable/
+6) https://www.fullstackpython.com/flask.html
+
+#### flask jinja
+* https://pythonhosted.org/Flask-Bootstrap/basic-usage.html
+* intro of d3 for flask https://medium.com/@rchang/learning-how-to-build-a-web-application-c5499bd15c8f
+* https://www.ntu.edu.sg/home/ehchua/programming/webprogramming/Python3_Flask.html
+* for API dev https://swagger.io/swagger-ui/
+* https://realpython.com/blog/python/primer-on-jinja-templating/
+
+#### PLATES
+* https://github.com/nebiolabs/plate-map

@@ -1,0 +1,370 @@
+.wrapper {
+    width: 1300px;
+}
+.grid-container {
+    margin: 1em 1em 1em 1em;
+    display: grid;
+    grid-template-columns: 10% 10% 70%;
+    grid-gap: 80px;
+    justify-self: end;
+
+
+}
+.grid-container1 {
+    font: 10px arial, sans-serif;
+    margin: 0em 0em 0em 2em;
+   	text-align: center;
+	clear: both;
+    background-color: #fff;
+    /*border: 1px solid #000;*/
+    /* change border to be inside the box */
+    box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+    display: inline-grid;
+    width: 49%;
+    /*max-width: 750px;*/
+    grid-template-columns: auto auto auto auto auto auto auto auto ;
+    grid-gap: 15px;
+    /*background-color: #f33235;*/
+    /*padding: 4px 4px 4px 0px;*/
+}
+.box_frame{
+    box-shadow: 3px 3px 1px #888888;
+	float: left;
+	background-color: #ebeeb5; /* standard background color */
+	border: 1px solid #898989;
+	border-radius: 11px;
+	padding: 5px;
+	margin-left:4%;
+	text-align: center;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+}
+.box_frame:first-child{
+	margin-left: 0;
+}
+.box_frame #drugs{ /*change to 100% coz of grid usage */
+	width: 100%;
+}
+.grid-container2 {
+    margin: 0em 0em 0em 1em;
+
+    display: grid;
+    width: 100%;
+    grid-template-columns: 50% 50%;
+    padding: 4px 4px 4px 0px;
+}
+.parent_table {
+    width:100%;
+}
+#mytable {
+    width: 100%;
+    margin: 1em 0em 0em 0em;
+    table-layout: auto;
+    text-align: right;
+    border:1px solid grey;
+}
+
+/*for single */
+#mytable .single_circle {
+    border: 1px solid black;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-image:
+
+    radial-gradient(
+        circle,
+        #fff3ae,
+        #fff3ae 25px,
+        transparent 25px);
+}
+
+/*for negative*/
+#mytable .negative_circle {
+    border: 1px solid black;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+
+    background-image:
+
+    radial-gradient(
+        circle,
+        #f33235,
+        #f33235 27px,
+        transparent 27px);
+}
+/*for positive */
+#mytable .positive_circle {
+    border: 1px solid black;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-image:
+    radial-gradient(
+        circle,
+        #056b0b,
+        #056b0b 27px,
+        transparent 27px);
+}
+
+/*for combo2 */
+#mytable .combo2_circle {
+   border: 1px solid black;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background:
+            -moz-linear-gradient(
+                    360deg,
+                    rgba(228,240,233,1) 0%,
+                    rgba(228,240,233,1) 49%,
+                    rgba(5,193,255,1) 50%,
+                    rgba(5,193,255,1) 100%); /* ff3.6+ */
+    background:
+            -webkit-gradient(
+                    linear, left top, right top,
+                    color-stop(0%, rgba(228,240,233,1)),
+                    color-stop(49%, rgba(228,240,233,1)),
+                    color-stop(50%, rgba(5,193,255,1)),
+                    color-stop(100%, rgba(5,193,255,1))); /* safari4+,chrome */
+}
+
+
+/*for combo3 */
+#mytable .combo3_circle {
+    border: 1px solid black;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+     /*-moz-border-radius: 54px;*/
+    /*-webkit-border-radius: 54px;*/
+    background:
+            -moz-linear-gradient(
+                    0deg,
+                    rgba(255,255,255,1) 0%,
+                    rgba(196,225,225,1) 23%,
+                    rgba(0,125,125,1) 100%); /* ff3.6+ */
+background:
+        -webkit-gradient(
+                linear, left top, right top,
+                color-stop(0%, rgba(255,255,255,1)),
+                color-stop(23%, rgba(196,225,225,1)),
+                color-stop(100%, rgba(0,125,125,1))); /* safari4+,chrome */
+}
+
+#mytable .nodrug_circle {
+    border: 1px solid black;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+        radial-gradient(
+        circle,
+        #b5b3b5,
+        #b5b3b5 27px,
+        transparent 27px);
+}
+
+
+
+
+/*for empty */
+#mytable .empty_circle {
+    border: 1px solid black;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-image:
+    radial-gradient(
+        circle,
+        #b5b3b5,
+        #b5b3b5 27px,
+        transparent 27px);
+}
+
+#mytable td {
+    font: 12px arial, sans-serif;
+    height4850px;
+    width: 54px;
+}
+#legend {
+    width: 80%;
+    margin: auto;
+    table-layout: auto;
+    text-align: right;
+    border-collapse: collapse;
+    /*border:1px solid grey;*/
+}
+
+/*works with class. Just in case*/
+#legend .legend_row1_column0:before {
+  content: attr(data-char);
+    display: block;
+    background: #f33235;
+    width: 20px;
+    height: 20px;
+    line-height:20px;
+    text-align:left;
+    vertical-align: middle;
+    border-radius: 50%;
+    margin:0 auto;
+    border: 1px solid black;
+
+
+}
+/*works with ID*/
+#legend #legend_row1_column0:before {
+     content: attr(data-char);
+    display: block;
+    background: #f33235;
+    width: 20px;
+    height: 20px;
+    line-height:20px;
+    text-align:center;
+    vertical-align: middle;
+    border-radius: 50%;
+    margin:0 auto;
+    border: 1px solid black;
+
+}
+#legend #legend_row1_column1:before {
+  content: attr(data-char);
+    display: block;
+    background: #056b0b;
+    width: 20px;
+    height: 20px;
+    line-height:20px;
+    text-align:center;
+    vertical-align: middle;
+    border-radius: 50%;
+    margin:0 auto;
+    border: 1px solid black;
+
+
+}
+#legend #legend_row1_column2:before {
+    content: attr(data-char);
+    display: block;
+    width: 20px;
+    height: 20px;
+    line-height:20px;
+    text-align:center;
+    vertical-align: middle;
+    border-radius: 50%;
+    margin:0 auto;
+    border: 1px solid black;
+    background-image:
+    radial-gradient(
+        circle,
+        #f6f1ff,
+        #fcfff2 10px,
+        transparent 10px);
+}
+#legend #legend_row1_column3:before {
+  content: attr(data-char);
+    display: block;
+    background: #ebeeb5;
+    width: 20px;
+    height: 20px;
+    line-height:20px;
+    text-align:center;
+    vertical-align: middle;
+    border-radius: 50%;
+    margin:0 auto;
+    border: 1px solid black;
+
+}
+#legend #legend_row1_column4:before {
+    content: attr(data-char);
+    display: block;
+    width: 20px;
+    height: 20px;
+    line-height:20px;
+    text-align:center;
+    vertical-align: middle;
+    border-radius: 50%;
+    margin:0 auto;
+    border: 1px solid black;
+    background:
+            -moz-linear-gradient(
+                    360deg,
+                    rgba(228,240,233,1) 0%,
+                    rgba(228,240,233,1) 49%,
+                    rgba(5,193,255,1) 50%,
+                    rgba(5,193,255,1) 100%); /* ff3.6+ */
+    background:
+            -webkit-gradient(
+                    linear, left top, right top,
+                    color-stop(0%, rgba(228,240,233,1)),
+                    color-stop(49%, rgba(228,240,233,1)),
+                    color-stop(50%, rgba(5,193,255,1)),
+                    color-stop(100%, rgba(5,193,255,1))); /* safari4+,chrome */
+}
+#legend #legend_row1_column5:before {
+    content: attr(data-char);
+    display: block;
+    width: 20px;
+    height: 20px;
+    line-height:20px;
+    text-align:center;
+    vertical-align: middle;
+    border-radius: 50%;
+    margin:0 auto;
+    border: 1px solid black;
+    background:
+            -moz-linear-gradient(
+                    0deg,
+                    rgba(255,255,255,1) 0%,
+                    rgba(196,225,225,1) 23%,
+                    rgba(0,125,125,1) 100%); /* ff3.6+ */
+    background:
+        -webkit-gradient(
+                linear, left top, right top,
+                color-stop(0%, rgba(255,255,255,1)),
+                color-stop(23%, rgba(196,225,225,1)),
+                color-stop(100%, rgba(0,125,125,1))); /* safari4+,chrome */
+}
+
+#legend #legend_row1_column6:before {
+    content: attr(data-char);
+    display: block;
+    background: #b5b3b5;
+    width: 20px;
+    height: 20px;
+    line-height:20px;
+    text-align:center;
+    vertical-align: middle;
+    border-radius: 50%;
+    margin:0 auto;
+    border: 1px solid black;
+
+}
+
+
+#legend td {
+    font: 12px arial, sans-serif;
+    /*text-align: justify-all;*/
+    height: 20px;
+        /*border:1px solid grey;*/
+
+}
+
+/*d3 styles*/
+.node circle {
+    fill: #fff;
+    stroke: steelblue;
+    stroke-width: 2px;
+
+}
+.node text { font: 10px sans-serif; }
+.node--internal text {
+    text-shadow: 0 1px 0 #fff, 0 -1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff;
+}
+.link {
+    fill: none;
+    stroke: #ccc;
+    stroke-width: 2px;
+}
