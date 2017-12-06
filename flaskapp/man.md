@@ -14,7 +14,7 @@
 * enable user authorization (potentially giving accesss to different data depths)
 * cache the *.js static stuff and minify it to decrease load time
 * use bootstrap css for mobile data viz and much prettier UI
-* add cool D3 stuff, like interactive controls
+* add cool D3 stuff, like interactive controls and bidirectional callbals from graph <-> elements and back
 * work on loading of static files using async or defer on less usefull stuff
 * set favicon from default :)
 * think of better system for labeling the wells. It is not robust with case/ifs
