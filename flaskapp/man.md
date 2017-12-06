@@ -8,6 +8,9 @@
 * `pip install -e .` from library root, where setup.py is located
 * `flask run`
 
+## Modifications
+* wells in first row that have been covered by the dropdown menu on the image are programmed as empty. As it is the only class that was not used in the rest of the plate.
+
 ## possible TODOs
 * enable API for gui-less access to data, for ease of integration in other services
 * enable user authorization (potentially giving accesss to different data depths depending on user access rights)
