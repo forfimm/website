@@ -1,4 +1,4 @@
-# man for setting up the env. Use python 3.6
+## man for setting up the env. Use python 3.6
 * setup env of choice (conda/anaconda/virtualenv and activate it
 * `pip install flask`
 
