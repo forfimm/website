@@ -10,6 +10,7 @@
 
 ## Modifications
 * wells in first row that have been covered by the dropdown menu on the image are programmed as empty. As it is the only class that was not used in the rest of the plate.
+* a number of drugs that are also covered by the dropdown have been gathered from the internet
 
 ## possible TODOs
 * enable API for gui-less access to data, for ease of integration in other services
