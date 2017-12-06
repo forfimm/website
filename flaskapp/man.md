@@ -4,7 +4,7 @@
 
 ## man for running
 * `export FLASK_APP=flaskapp`
-* `export FLASK_DEBUG=true` //choose false if used for production. If windows, use setx or info from (here) [https://www.java.com/en/download/help/path.xml] 
+* `export FLASK_DEBUG=true` //choose false if used for production. If windows, use setx or info from [here](https://www.java.com/en/download/help/path.xml) 
 * `pip install -e .` from library root, where setup.py is located
 * `flask run`
 
